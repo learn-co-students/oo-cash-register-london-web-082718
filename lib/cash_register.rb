@@ -18,8 +18,8 @@ class CashRegister
 
   def apply_discount
     if @discount
-      @total *= (1 - (discount.to_f/100))
-      "After the discount, the total comes to $800."
+      @total = (@total * (1 - (discount.to_f/100))).to_i
+      "After the discount, the total comes to $#{total}."
     else
       "There is no discount to apply."
     end
@@ -28,7 +28,7 @@ class CashRegister
   def void_last_transaction
     # the tests don't require it but we want to remove the voided items from the items array as well as reducing the title by their cost
     @last_quantity.times { @items.pop }
-    
+
     @total = @last_total
   end
 
